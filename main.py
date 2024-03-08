@@ -54,4 +54,41 @@ class Gato:
             valores = [self.tablero[i][j] for i, j in opcion]
             if len(set(valores)) == 1 and ' ' not in valores:
                 return valores[0]
-        return None       
+        return None
+    
+ # 7. Desempaquetamiento extendido
+    def jugar(self):
+        while self.ganador is None:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+                if event.type == pygame.MOUSEBUTTONDOWN and self.ganador is None:
+                    mouse_pos = pygame.mouse.get_pos()
+                    if len(mouse_pos) == 2:
+                        x, y = mouse_pos
+                        fila = y // 100
+                        columna = x // 100
+
+                        if self.tablero[fila][columna] == ' ':
+                            self.tablero[fila][columna] = self.turno
+                            self.ganador = self.verificar_ganador()
+                            if self.ganador:
+                                print(f"¡Felicidades {self.jugadores[self.ganador]}! ¡Has ganado!")
+                            elif all(all(c != ' ' for c in row) for row in self.tablero):
+                                print("¡Empate!")
+                                break
+                            # Cambiar el turno del jugador
+                            self.turno = 'O' if self.turno == 'X' else 'X'
+
+            self.dibujar_tablero()
+            for fila in range(3):
+                for columna in range(3):
+                    if self.tablero[fila][columna] != ' ':
+                        self.dibujar_figura(fila, columna)
+            pygame.display.update()
+
+if __name__ == "__main__":
+    juego = Gato()
+    juego.jugar()    
