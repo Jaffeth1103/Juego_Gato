@@ -47,13 +47,22 @@ class Gato:
             self.window.blit(self.X_IMAGE, (columna * 100+10, fila * 100+10))
         else:
             self.window.blit(self.O_IMAGE, (columna * 100+10, fila * 100+10))
+<<<<<<< HEAD
 
      # 6. Desempaquetamiento en argumentos de funciones
+=======
+                    
+  # 6. Desempaquetamiento en argumentos de funciones
+>>>>>>> 7515bd497392d7e4722b64e43c1e6db73153acb1
     def verificar_ganador(self):
         for opcion in self.opciones_ganadoras:
             valores = [self.tablero[i][j] for i, j in opcion]
             if len(set(valores)) == 1 and ' ' not in valores:
                 return valores[0]
+<<<<<<< HEAD
         return None
         
         
+=======
+        return None       
+>>>>>>> 7515bd497392d7e4722b64e43c1e6db73153acb1
