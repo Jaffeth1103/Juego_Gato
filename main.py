@@ -2,7 +2,7 @@ import pygame
 import sys
 
 class Gato:
-    def _init_(self):
+    def __init__(self):
         # Inicialización de Pygame
         pygame.init()
 
@@ -33,36 +33,62 @@ class Gato:
         self.ganador = None
         self.turno = 'X'
 
-# Dibujar el tablero
+    # Dibujar el tablero
     def dibujar_tablero(self):
         self.window.fill(self.WHITE)
         pygame.draw.line(self.window, self.BLACK, (100, 0), (100, 300), 5)
         pygame.draw.line(self.window, self.BLACK, (200, 0), (200, 300), 5)
         pygame.draw.line(self.window, self.BLACK, (0, 100), (300, 100), 5)
         pygame.draw.line(self.window, self.BLACK, (0, 200), (300, 200), 5)
-            
- # Dibujar X o O en el tablero
+
+    # Dibujar X o O en el tablero
     def dibujar_figura(self, fila, columna):
         if self.tablero[fila][columna] == 'X':
             self.window.blit(self.X_IMAGE, (columna * 100+10, fila * 100+10))
         else:
             self.window.blit(self.O_IMAGE, (columna * 100+10, fila * 100+10))
-<<<<<<< HEAD
 
-     # 6. Desempaquetamiento en argumentos de funciones
-=======
-                    
-  # 6. Desempaquetamiento en argumentos de funciones
->>>>>>> 7515bd497392d7e4722b64e43c1e6db73153acb1
+    # 6. Desempaquetamiento en argumentos de funciones
     def verificar_ganador(self):
         for opcion in self.opciones_ganadoras:
             valores = [self.tablero[i][j] for i, j in opcion]
             if len(set(valores)) == 1 and ' ' not in valores:
                 return valores[0]
-<<<<<<< HEAD
         return None
-        
-        
-=======
-        return None       
->>>>>>> 7515bd497392d7e4722b64e43c1e6db73153acb1
+
+    # 7. Desempaquetamiento extendido
+    def jugar(self):
+        while self.ganador is None:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+                if event.type == pygame.MOUSEBUTTONDOWN and self.ganador is None:
+                    mouse_pos = pygame.mouse.get_pos()
+                    if len(mouse_pos) == 2:
+                        x, y = mouse_pos
+                        fila = y // 100
+                        columna = x // 100
+
+                        if self.tablero[fila][columna] == ' ':
+                            self.tablero[fila][columna] = self.turno
+                            self.ganador = self.verificar_ganador()
+                            if self.ganador:
+                                print(f"¡Felicidades {self.jugadores[self.ganador]}! ¡Has ganado!")
+                            elif all(all(c != ' ' for c in row) for row in self.tablero):
+                                print("¡Empate!")
+                                break
+                            # Cambiar el turno del jugador
+                            self.turno = 'O' if self.turno == 'X' else 'X'
+
+            self.dibujar_tablero()
+            for fila in range(3):
+                for columna in range(3):
+                    if self.tablero[fila][columna] != ' ':
+                        self.dibujar_figura(fila, columna)
+            pygame.display.update()
+
+if __name__ == "__main__":
+    juego = Gato()
+    juego.jugar()
