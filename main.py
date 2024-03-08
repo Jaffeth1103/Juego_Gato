@@ -1,7 +1,14 @@
-print("hello world")
+import pygame
+import sys
 
-print("Hola")
+class Gato:
+    def _init_(self):
+        # Inicialización de Pygame
+        pygame.init()
 
-print("Hola soy Pao")
+        # Tamaño de la ventana
+        self.window_size = (300, 300)
 
-print("Hola soy Ed")
+        # Colores
+        self.WHITE = (255, 255, 255)
+        self.BLACK = (0, 0, 0)
