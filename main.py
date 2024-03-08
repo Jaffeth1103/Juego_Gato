@@ -18,8 +18,8 @@ class Gato:
         pygame.display.set_caption("Gato")
 
         # Cargar imágenes
-        self.X_IMAGE = pygame.image.load(r'C:\Users\urani\Desktop\Programa Gato\X.png')
-        self.O_IMAGE = pygame.image.load(r'C:\Users\urani\Desktop\Programa Gato\O.png')
+        self.X_IMAGE = pygame.image.load(r'C:\Users\urani\Desktop\Gato\X.png')
+        self.O_IMAGE = pygame.image.load(r'C:\Users\urani\Desktop\Gato\O.png')
 
         # 1. Comprensión de listas con condicionales
         self.tablero = [[' ' for _ in range(3)] for _ in range(3)]
