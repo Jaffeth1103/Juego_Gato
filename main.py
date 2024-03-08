@@ -32,3 +32,13 @@ class Gato:
         # 4. Empaquetamiento de variables/ZIP variables
         self.ganador = None
         self.turno = 'X'
+
+# Dibujar el tablero
+    def dibujar_tablero(self):
+        self.window.fill(self.WHITE)
+        pygame.draw.line(self.window, self.BLACK, (100, 0), (100, 300), 5)
+        pygame.draw.line(self.window, self.BLACK, (200, 0), (200, 300), 5)
+        pygame.draw.line(self.window, self.BLACK, (0, 100), (300, 100), 5)
+        pygame.draw.line(self.window, self.BLACK, (0, 200), (300, 200), 5)
+
+        
