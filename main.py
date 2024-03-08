@@ -40,5 +40,11 @@ class Gato:
         pygame.draw.line(self.window, self.BLACK, (200, 0), (200, 300), 5)
         pygame.draw.line(self.window, self.BLACK, (0, 100), (300, 100), 5)
         pygame.draw.line(self.window, self.BLACK, (0, 200), (300, 200), 5)
-
+            
+ # Dibujar X o O en el tablero
+    def dibujar_figura(self, fila, columna):
+        if self.tablero[fila][columna] == 'X':
+            self.window.blit(self.X_IMAGE, (columna * 100+10, fila * 100+10))
+        else:
+            self.window.blit(self.O_IMAGE, (columna * 100+10, fila * 100+10))
         
