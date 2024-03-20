@@ -3,8 +3,15 @@ import sys
 import tkinter as tk
 from tkinter import messagebox
 from openai import OpenAI
+import pickle
 
-client = OpenAI(api_key="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")
+# Read the API key from the .pkl file
+with open("api_key.pkl", "rb") as file:
+    loaded_api_key = pickle.load(file)
+
+print(loaded_api_key)  # Prints the loaded API key
+
+client = OpenAI(api_key="api_key.pkl")
 BalanceIntentos = 1.5
 
 class Gato:
